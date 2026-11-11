@@ -28,9 +28,6 @@ def main(cfg=CONFIG):
             )
 
     conn = sqlite3.connect(cfg["db_path"])
-    placement_times = [r[0] for r in conn.execute(
-        "SELECT t_end FROM events WHERE event_type='PLACEMENT' ORDER BY t_end"
-    )]
     cycle_ends = [r[0] for r in conn.execute("SELECT t_end FROM cycles ORDER BY cycle_id")]
     conn.close()
 
@@ -59,18 +56,13 @@ def main(cfg=CONFIG):
             cv2.circle(frame, (int(lw_x), int(lw_y)), 6, (255, 0, 0), -1)
             cv2.circle(frame, (int(rw_x), int(rw_y)), 6, (0, 0, 255), -1)
 
-        # running count = placements confirmed by this timestamp; current cycle
-        # time = elapsed since the last completed cycle (0 if none completed yet)
-        count = bisect.bisect_right(placement_times, t)
-        last_cycle_end = 0.0
-        for ce in cycle_ends:
-            if ce <= t:
-                last_cycle_end = ce
-            else:
-                break
+        # cartons filled = completed cycles (every 6 bottles placed) by this
+        # timestamp; current cycle time = elapsed since the last completed one
+        cartons_filled = bisect.bisect_right(cycle_ends, t)
+        last_cycle_end = cycle_ends[cartons_filled - 1] if cartons_filled else 0.0
         cycle_time = t - last_cycle_end
 
-        cv2.putText(frame, f"placements: {count}", (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+        cv2.putText(frame, f"cartons filled: {cartons_filled}", (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
         cv2.putText(frame, f"cycle time: {cycle_time:.1f}s", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
         out.write(frame)

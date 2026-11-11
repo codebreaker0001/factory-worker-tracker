@@ -8,7 +8,7 @@ CONFIG = {
     "zones_json": "data/zones.json",
     "out_db": "data/events.db",
     "bottles_per_carton": 6,
-    "smooth_window": 5,   # consecutive frames a wrist must sit in a zone before the zone change is "confirmed" (debounces flicker)
+    "smooth_window": 2,   # consecutive frames a wrist must sit in a zone before the zone change is "confirmed" (debounces flicker)
     "debounce_sec": 1.0,  # min time between two counted placements, across either wrist
     "conf_thres": 0.3,    # keypoints below this confidence are treated as "unknown" position
 }
