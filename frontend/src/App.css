@@ -1,0 +1,164 @@
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+.app header h1 {
+  font-size: 22px;
+  margin: 0 0 4px;
+}
+
+.app header p {
+  color: var(--text-secondary);
+  margin: 0 0 24px;
+  font-size: 14px;
+}
+
+.panel {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.panel h2 {
+  font-size: 15px;
+  margin: 0 0 16px;
+  color: var(--text-primary);
+}
+
+.video-panel video {
+  width: 100%;
+  max-height: 70vh;
+  border-radius: 8px;
+  display: block;
+  background: #000;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stat-tile {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.stat-tile .value {
+  font-size: 28px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-tile .label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 720px) {
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-wrap {
+  position: relative;
+}
+
+.bar-chart {
+  overflow: visible;
+}
+
+.bar-chart .bar {
+  fill: var(--series-1);
+  cursor: pointer;
+}
+
+.bar-chart .bar:hover,
+.bar-chart .bar.active {
+  opacity: 0.8;
+}
+
+.bar-chart .ref-line {
+  stroke: var(--text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.bar-chart .ref-label {
+  fill: var(--text-muted);
+  font-size: 10px;
+}
+
+.bar-chart .axis-label {
+  fill: var(--text-muted);
+  font-size: 10px;
+}
+
+.chart-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--text-primary);
+  color: var(--surface-1);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transform: translate(-50%, -115%);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.legend .swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+table.idle-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+table.idle-table th,
+table.idle-table td {
+  text-align: left;
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--gridline);
+  font-variant-numeric: tabular-nums;
+}
+
+table.idle-table th {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.empty-note {
+  color: var(--text-muted);
+  font-size: 13px;
+}
