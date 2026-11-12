@@ -1,4 +1,4 @@
-# mini-optifye
+
 
 Minimal CV pipeline for a manual packing line: one fixed camera, one worker
 packing bottles into cartons. Turns the raw video into placement events and
